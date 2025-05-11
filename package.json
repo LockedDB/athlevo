@@ -1,0 +1,21 @@
+{
+  "name": "athlevo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Shopify/dawn.git",
+  "author": "dani-benet <daniel.b@macadam.app>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "tailwind:watch": "tailwindcss -i ./assets/input.css -o ./assets/output.css --watch",
+    "shopify:dev": "shopify theme dev --store=athlevo-store",
+    "dev": "concurrently --names \"TAILWIND,SHOPIFY\" -c \"blue,magenta\" \"yarn tailwind:watch\" \"yarn shopify:dev\""
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.6",
+    "tailwindcss": "^4.1.6"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
