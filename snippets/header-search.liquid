@@ -11,18 +11,16 @@
 <details-modal class="header__search">
   <details>
     <summary
-      class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
+      class="modal__toggle h-full"
       aria-haspopup="dialog"
       aria-label="{{ 'general.search.search' | t }}"
     >
-      <span>
+      <div class="flex items-center justify-between cursor-pointer bg-gray-100 px-4 text-gray-500 hover:bg-gray-200 h-full py-2">
         <span class="svg-wrapper">
           {{- 'icon-search.svg' | inline_asset_content -}}
         </span>
-        <span class="svg-wrapper header__icon-close">
-          {{- 'icon-close.svg' | inline_asset_content -}}
-        </span>
-      </span>
+        <span class="flex-grow ml-3">{{ 'What are you looking for today?' }}</span>
+      </div>
     </summary>
     <div
       class="search-modal modal__content gradient"
