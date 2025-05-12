@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "tailwind:watch": "tailwindcss -i ./assets/input.css -o ./assets/output.css --watch",
-    "shopify:dev": "shopify theme dev --store=athlevo-store",
+    "shopify:dev": "shopify theme dev --store=athlevo-store --live-reload hot-reload",
     "dev": "concurrently --names \"TAILWIND,SHOPIFY\" -c \"blue,magenta\" \"yarn tailwind:watch\" \"yarn shopify:dev\""
   },
   "dependencies": {

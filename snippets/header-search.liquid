@@ -11,7 +11,7 @@
 <details-modal class="header__search">
   <details>
     <summary
-      class="modal__toggle h-full"
+      class="modal__toggle h-full small-hide"
       aria-haspopup="dialog"
       aria-label="{{ 'general.search.search' | t }}"
     >
@@ -38,15 +38,15 @@
         {%- else -%}
           <search-form class="search-modal__form">
         {%- endif -%}
-        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-          <div class="field">
+        <form action="{{ routes.search_url }}" method="get" role="search">
+          <div>
             <input
-              class="search__input field__input"
+              class="w-full px-4 py-2 bg-gray-100"
               id="{{ input_id }}"
               type="search"
               name="q"
               value="{{ search.terms | escape }}"
-              placeholder="{{ 'general.search.search' | t }}"
+              placeholder="{{ 'What are you looking for today?' }}"
               {%- if settings.predictive_search_enabled -%}
                 role="combobox"
                 aria-expanded="false"
@@ -60,7 +60,6 @@
                 spellcheck="false"
               {%- endif -%}
             >
-            <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
             <input type="hidden" name="options[prefix]" value="last">
             <button
               type="reset"
@@ -71,7 +70,10 @@
                 {{- 'icon-reset.svg' | inline_asset_content -}}
               </span>
             </button>
-            <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+            <button
+              class="w-[44px] h-full items-center justify-center flex absolute right-0 top-0 overflow-hidden"
+              aria-label="{{ 'general.search.search' | t }}"
+            >
               <span class="svg-wrapper">
                 {{- 'icon-search.svg' | inline_asset_content -}}
               </span>
