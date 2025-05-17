@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .animate-scrolling-banner {
+    animation: scroll-kf var(--duration) linear infinite;
+  }
+}
+
+@keyframes scroll-kf {
+  0% { /* 'from' or '0%' */
+    transform: translateX(var(--transform-start));
+  }
+  100% { /* 'to' or '100%' */
+    transform: translateX(var(--transform-end));
+  }
+}

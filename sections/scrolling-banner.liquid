@@ -1,0 +1,71 @@
+{%- liquid
+  assign speed = section.settings.scroll_speed | default: 20
+  assign direction = section.settings.scroll_direction | default: 'left'
+
+  assign transform_start = '0%'
+  assign transform_end = '-100%'
+
+  if direction == 'right'
+    assign transform_start = '-100%'
+    assign transform_end = '0%'
+  endif
+
+  assign num_visible_repetitions = 4
+  assign total_repetitions = num_visible_repetitions | times: 2
+-%}
+
+<div class="w-full overflow-hidden py-2.5 bg-gray-100" role="marquee">
+  <div
+    class="whitespace-nowrap relative"
+    style="
+      --duration: {{ speed }}s;
+      --transform-start: {{ transform_start }};
+      --transform-end: {{ transform_end }};
+    "
+  >
+    {%- for i in (1..total_repetitions) -%}
+      <span class="px-4 inline-block animate-scrolling-banner">
+        {{- section.settings.banner_text -}}
+      </span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Scrolling Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "Your scrolling message here!"
+    },
+    {
+      "type": "radio",
+      "id": "scroll_direction",
+      "label": "Scroll Direction",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "s",
+      "label": "Scroll Duration (longer is slower)",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Banner"
+    }
+  ]
+}
+{% endschema %}
