@@ -12,6 +12,27 @@
 
   assign num_visible_repetitions = 4
   assign total_repetitions = num_visible_repetitions | times: 2
+
+  assign avg_char_width_px = 8
+  assign target_banner_fill_width_px = 2560
+  assign padding_per_span_px = 32
+  assign gap_px = 16
+
+  assign text_to_measure = section.settings.banner_text | default: 'Default Text'
+  if text_to_measure == ''
+    assign text_to_measure = 'Default Text'
+  endif
+  assign text_length = text_to_measure | size
+
+  assign estimated_text_width_px = text_length | times: avg_char_width_px
+  assign single_span_total_width_px = estimated_text_width_px | plus: padding_per_span_px
+  assign width_per_item_for_calc = single_span_total_width_px | plus: gap_px
+  if width_per_item_for_calc == 0
+    assign width_per_item_for_calc = 1
+  endif
+
+  assign calculated_repetitions = target_banner_fill_width_px | divided_by: width_per_item_for_calc | ceil
+  assign total_repetitions = calculated_repetitions | at_least: 4
 -%}
 
 <div class="w-full overflow-hidden py-2.5 bg-gray-100" role="marquee">
